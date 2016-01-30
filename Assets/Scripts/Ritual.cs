@@ -34,6 +34,10 @@ public class Ritual
 		return priority;
 	}
 
+	public Rune[] GetRunes() {
+		return runes;
+	}
+
 	public string GetEffect() {
 		return effect;
 	}

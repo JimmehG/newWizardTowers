@@ -28,8 +28,18 @@ public class Player : MonoBehaviour {
         turn.runesAdded.Clear();
     }
 
+	public void useRunes(Rune[] used) {
+		foreach (Rune r in used) {
+			runeBucket.Remove(r);
+		}
+	}
+
 	public void addHealth(int damage) {
 		health += damage;
+	}
+
+	public bool isDead() {
+		return health <= 0;
 	}
 
 	public void addStatus(StatusEffect status) {

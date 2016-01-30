@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class GameController : MonoBehaviour
 	public Player currentCaster;
 
 	public static GameController instance;
+
+	public Text winText;
 
 
     private Phase currentView;
@@ -52,10 +55,6 @@ public class GameController : MonoBehaviour
         }
 
         currentView = currentPhase;
-
-        Debug.Log(currentPhase.ToString());
-		Debug.Log(Ritual.FIREBALL.Castable(new Rune[] {Rune.a}));
-		Debug.Log(Ritual.FIREBALL.Castable(new Rune[] {Rune.a, Rune.f}));
         
         TriggerPhaseObjects();
         TriggerCameraView();
@@ -80,11 +79,8 @@ public class GameController : MonoBehaviour
 
     void RunResults()
     {
-        Player[] players = FindObjectsOfType(typeof(Player)) as Player[];
-        foreach (Player p in players)
-        {
-            p.addRunes();
-        }
+        player1.addRunes();
+		player2.addRunes();
 
 		Ritual p1Ritual = player1.getTurn().ritualCast;
 		Ritual p2Ritual = player2.getTurn().ritualCast;
@@ -113,11 +109,17 @@ public class GameController : MonoBehaviour
     }
 
 	IEnumerator Cast() {
+		currentCaster.useRunes(currentCaster.getTurn().ritualCast.GetRunes());
+
 		currentCaster.castingEffect = true;
-		currentCaster.castingAnimation = true;
 		RitualEffect.instance.Invoke(currentCaster.getTurn().ritualCast.GetEffect(), 0.0f);
+		while (currentCaster.castingEffect == true) {
+			yield return null;
+		}
+
+		currentCaster.castingAnimation = true;
 		RitualAnimation.instance.Invoke(currentCaster.getTurn().ritualCast.GetAnimation(), 0.0f);
-		while (currentCaster.castingEffect == true || currentCaster.castingAnimation == true) {
+		while (currentCaster.castingAnimation == true) {
 			yield return null;
 		}
 	}
@@ -125,6 +127,26 @@ public class GameController : MonoBehaviour
 	void TurnCleanup() {
 		player1.TurnCleanup();
 		player2.TurnCleanup();
+
+		if (player1.isDead() || player2.isDead()) {
+			GameOver();
+		} else {
+			EndTurn();
+		}
+	}
+
+	void GameOver() {
+		if (player1.isDead()) {
+			if (player2.isDead()) {
+				winText.text = "Draw";
+			} else {
+				winText.text = "Player 2 wins!";
+			}
+		} else {
+			winText.text = "Player 1 wins!";
+		}
+
+		winText.enabled = true;
 	}
 
     public void ViewOtherPlayer()
