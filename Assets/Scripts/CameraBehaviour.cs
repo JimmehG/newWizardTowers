@@ -7,8 +7,8 @@ public class CameraBehaviour : MonoBehaviour
     private Dictionary<GameController.Phase, Vector3> CameraPositions = new Dictionary<GameController.Phase, Vector3>
     {
         {GameController.Phase.Results, new Vector3(0, 0, 7.5f) },
-        {GameController.Phase.Player1, new Vector3(-7.3f, 0f, 4.455f) },
-        {GameController.Phase.Player2, new Vector3(7.3f, 0f, 4.455f) }
+        {GameController.Phase.Player1, new Vector3(-7.3f, 0.5f, 4.455f) },
+        {GameController.Phase.Player2, new Vector3(7.3f, 0.5f, 4.455f) }
     };
     public float speed;
     private bool moving = false;
