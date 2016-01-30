@@ -19,10 +19,12 @@ public class RitualEffect : MonoBehaviour {
 
 	public static void FireballEffect() {
 		Player source = GameController.instance.currentCaster;
-		ChooseTarget(source);
+        ChooseTarget(source);
 		Player target = source.getTurn().target;
 
-		if (!target.currentEffects.Contains(Player.StatusEffect.Shield)) {
+        Debug.Log(source.getTurn().target.name);
+
+        if (!target.currentEffects.Contains(Player.StatusEffect.Shield)) {
 			target.addHealth(-10);
 		}
 		source.castingEffect = false;

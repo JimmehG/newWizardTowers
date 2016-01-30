@@ -76,7 +76,7 @@ public class GameController : MonoBehaviour
 
 		Ritual p1Ritual = player1.getTurn().ritualCast;
 		Ritual p2Ritual = player2.getTurn().ritualCast;
-		if (p1Ritual != null && p2Ritual != null) {
+        if (p1Ritual != null && p2Ritual != null) {
 			//P1 goes first on same-spell. Shouldn't make a difference. Can case-by-case it later.
 			if (p1Ritual.GetPriority() < p2Ritual.GetPriority()) {
 				currentCaster = player2;
@@ -136,6 +136,7 @@ public class GameController : MonoBehaviour
 			}
 		} else {
 			winText.text = "Player 1 wins!";
+            print("P1 WINS!");
 		}
 
 		winText.enabled = true;
@@ -202,7 +203,7 @@ public class GameController : MonoBehaviour
 
     void TriggerPhaseObjects()
     {
-        CanvasGroup cG = FindObjectOfType<CanvasGroup>();
+        CanvasGroup cG = GameObject.FindGameObjectWithTag("mainUI").GetComponent<CanvasGroup>();
         if (currentPhase == GameController.Phase.Results)
             cG.alpha = 0;
         else
@@ -258,5 +259,32 @@ public class GameController : MonoBehaviour
 			position++;
 		}
 	}
+
+
+    public void sendRitual(Ritual ritual)
+    {
+        if (currentPhase == Phase.Player1)
+        {
+            player1.getTurn().ritualCast = ritual;
+        }
+        else
+        {
+            player2.getTurn().ritualCast = ritual;
+        }
+    }
+
+    public void sendTarget(Player targetPlayer)
+    {
+        if (currentPhase == Phase.Player1)
+        {
+            player1.getTurn().target = targetPlayer;
+        }
+        else
+        {
+            player2.getTurn().target = targetPlayer;
+        }
+    }
+
+
 
 }

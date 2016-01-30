@@ -5,42 +5,20 @@ public class RitualButton : MonoBehaviour {
 
 	public Ritual ritual;
 
-	// Marcus
+    public void sendRitual()
+    {
+        GameController.instance.sendRitual(ritual);
+    }
 
-	//public Player pOne;
-	//public Player pTwo;
+	public void targetVisible(bool visible)
+    {
+        CanvasGroup cG = GameObject.FindGameObjectWithTag("targetUI").GetComponent<CanvasGroup>();
+        if (visible)
+            cG.alpha = 1;
+        else
+            cG.alpha = 0;
 
-
-	//public 
-
-	void Start()
-	{
-		// Marcus
-
-		//pOne = GameObject.Find("Player").GetComponent<Player>();
-		//pTwo = GameObject.Find("Player 2").GetComponent<Player>();;
-	}
-
-
-	public void castRitual() {
-
-	}
-		
-	//Marcus
-
-	public void Click()
-	{
-
-//		pTwo.health -= 10;
-//
-//		if(pTwo.health <= 0)
-//		{
-////			print("Win");
-//		}
-
-		//print("Click");
-
-
-
-	}
+        cG.interactable = visible;
+        cG.blocksRaycasts = visible;
+    }
 }

@@ -31,4 +31,9 @@ public class Fireball : MonoBehaviour {
 		
 	
 	}
+
+    void OnCollisionEnter(Collision2D col)
+    {
+        Destroy(gameObject);
+    } 
 }

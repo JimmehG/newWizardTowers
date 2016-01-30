@@ -66,7 +66,7 @@ public class RitualAnimation : MonoBehaviour
 
 		} else
 		{
-			Instantiate (fireBallObj, new Vector3 (source.transform.position.x + 2.5f, source.transform.position.y, -5), Quaternion.identity);
+			Instantiate (fireBallObj, new Vector3 (source.transform.position.x - 2.5f, source.transform.position.y, -5), Quaternion.identity);
 
 		}
 
