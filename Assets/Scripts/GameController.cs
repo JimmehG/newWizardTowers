@@ -113,8 +113,10 @@ public class GameController : MonoBehaviour
 
 	IEnumerator Cast() {
 		currentCaster.castingEffect = true;
+		currentCaster.castingAnimation = true;
 		RitualEffect.instance.Invoke(currentCaster.getTurn().ritualCast.GetEffect(), 0.0f);
-		while (currentCaster.castingEffect == true) {
+		RitualAnimation.instance.Invoke(currentCaster.getTurn().ritualCast.GetAnimation(), 0.0f);
+		while (currentCaster.castingEffect == true || currentCaster.castingAnimation == true) {
 			yield return null;
 		}
 	}

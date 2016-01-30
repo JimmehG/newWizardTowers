@@ -6,6 +6,8 @@ public class Player : MonoBehaviour {
 
 	[HideInInspector]
 	public bool castingEffect = false;
+	[HideInInspector]
+	public bool castingAnimation = false;
     
     public enum StatusEffect {Shield, Confuse };//fill
 	public List<StatusEffect> currentEffects;
