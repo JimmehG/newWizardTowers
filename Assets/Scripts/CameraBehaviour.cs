@@ -22,7 +22,7 @@ public class CameraBehaviour : MonoBehaviour {
         {
             float distCovered = (Time.time - startTime) * speed;
             float fracJourney = distCovered / journeyLength;
-            Vector3 currentPos = Vector3.Lerp(startingPos, destination, fracJourney);
+            Vector3 currentPos = Vector3.Slerp(startingPos, destination, fracJourney);
             transform.position = new Vector3(currentPos.x, currentPos.y, -10);
             GetComponent<Camera>().orthographicSize = currentPos.z;
         }

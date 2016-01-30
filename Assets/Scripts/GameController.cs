@@ -32,6 +32,7 @@ public class GameController : MonoBehaviour
 		
 		currentView = Phase.Player1;
 		TriggerCameraView();
+        ChangeViewPhaseObjects();
     }
 
 	public GameController() {
@@ -125,5 +126,30 @@ public class GameController : MonoBehaviour
 		player1.TurnCleanup();
 		player2.TurnCleanup();
 	}
+
+    public void ViewOtherPlayer()
+    {
+        if (currentView != Phase.Results)
+        {
+            if (currentView == Phase.Player1)
+            {
+                currentView = Phase.Player2;
+            }
+            else if (currentView == Phase.Player2)
+            {
+                currentView = Phase.Player1;
+            }
+            ChangeViewPhaseObjects();
+            TriggerCameraView();
+        }
+        
+    }
+    void ChangeViewPhaseObjects()
+    {
+        foreach (PhaseButton p in FindObjectsOfType(typeof(PhaseButton)) as PhaseButton[])
+        {
+            p.OnViewChange(currentView);
+        }
+    }
 
 }
