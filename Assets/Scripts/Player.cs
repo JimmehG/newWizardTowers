@@ -29,8 +29,11 @@ public class Player : MonoBehaviour {
 
     public void addRunes()
     {
-        runeBucket.AddRange(turn.runesAdded);
-        turn.runesAdded.Clear();
+        if (turn.runesAdded.Count > 0)
+        {
+            runeBucket.AddRange(turn.runesAdded);
+            turn.runesAdded.Clear();
+        }
     }
 
     public List<Rune> getRunes()

@@ -32,10 +32,9 @@ public class GameController : MonoBehaviour
 		}
 
 		currentPhase = Phase.Player1;
-		TriggerPhaseObjects();
+        currentView = Phase.Player1;
+        TriggerPhaseObjects();
 		
-		currentView = Phase.Player1;
-		TriggerCameraView();
         ChangeViewPhaseObjects();
     }
 
@@ -58,25 +57,13 @@ public class GameController : MonoBehaviour
         currentView = currentPhase;
         
         TriggerPhaseObjects();
-        TriggerCameraView();
 
         if (currentPhase == Phase.Results) {
             RunResults();
         }
     }
 
-    void TriggerPhaseObjects()
-    {
-		foreach (PhaseButton p in FindObjectsOfType(typeof(PhaseButton)) as PhaseButton[])
-        {
-            p.OnPhase(currentPhase);
-        }
-    }
-
-    void TriggerCameraView()
-    {
-        cam.OnViewChange(currentView);
-    }
+    
 
     void RunResults()
     {
@@ -177,6 +164,26 @@ public class GameController : MonoBehaviour
             
     }
 
+    void TriggerPhaseObjects()
+    {
+        CanvasGroup cG = FindObjectOfType<CanvasGroup>();
+        if (currentPhase == GameController.Phase.Results)
+            cG.alpha = 0;
+        else
+            cG.alpha = 1;
+
+        cG.interactable = (currentPhase != GameController.Phase.Results);
+
+        TriggerCameraView();
+        ChangeViewPhaseObjects();
+
+    }
+
+    void TriggerCameraView()
+    {
+        cam.OnViewChange(currentView);
+    }
+
     public void ViewOtherPlayer()
     {
         if (currentView != Phase.Results)
@@ -196,7 +203,7 @@ public class GameController : MonoBehaviour
     }
     void ChangeViewPhaseObjects()
     {
-        foreach (PhaseButton p in FindObjectsOfType(typeof(PhaseButton)) as PhaseButton[])
+        foreach (PhaseObject p in FindObjectsOfType(typeof(PhaseObject)) as PhaseObject[])
         {
             p.OnViewChange(currentView);
         }
