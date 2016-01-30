@@ -8,6 +8,8 @@ public class MagicBomb : MonoBehaviour {
 
 	public float moveSpeed;
 
+	int spellTime;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -17,11 +19,22 @@ public class MagicBomb : MonoBehaviour {
 	void Update () 
 	{
 
-		if(turnNumb >= numberToFall)
-		{
-			//Drop, deal damage
-			Destroy(gameObject);
-		}
+		spellTime = 4;
+
+		StartCoroutine(Wait());
+
+
+//		if(turnNumb >= numberToFall)
+//		{
+//			//Drop, deal damage
+//			Destroy(gameObject);
+//		}
 	
+	}
+
+	IEnumerator Wait()
+	{
+		yield return new WaitForSeconds(spellTime);
+		print("Hi");
 	}
 }
