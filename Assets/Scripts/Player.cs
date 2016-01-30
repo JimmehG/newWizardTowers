@@ -33,6 +33,11 @@ public class Player : MonoBehaviour {
         turn.runesAdded.Clear();
     }
 
+    public List<Rune> getRunes()
+    {
+        return runeBucket;
+    }
+
 	public void useRunes(Rune[] used) {
 		foreach (Rune r in used) {
 			runeBucket.Remove(r);

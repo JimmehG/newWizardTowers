@@ -16,6 +16,7 @@ public class GameController : MonoBehaviour
 
 	public Text winText;
 
+    public Text runeText;
 
     private Phase currentView;
 
@@ -148,6 +149,33 @@ public class GameController : MonoBehaviour
 
 		winText.enabled = true;
 	}
+
+    public void runeDisplay()
+    {
+        string generatedText = "";
+        List<Rune> runesToDisplay;
+        if (currentPhase == Phase.Player1)
+        {
+            runesToDisplay = player1.getRunes();
+            runesToDisplay.AddRange(player1.getTurn().runesAdded);
+            foreach (Rune r in runesToDisplay)
+            {
+                generatedText += r.ToString();
+            }
+        }
+        else if (currentPhase == Phase.Player2)
+        {
+            runesToDisplay = player2.getRunes();
+            runesToDisplay.AddRange(player2.getTurn().runesAdded);
+            foreach (Rune r in runesToDisplay)
+            {
+                generatedText += r.ToString();
+            }
+        }
+        
+        runeText.text = generatedText;
+            
+    }
 
     public void ViewOtherPlayer()
     {
