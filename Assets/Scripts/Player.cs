@@ -15,12 +15,12 @@ public class Player : MonoBehaviour {
     public enum StatusEffect {Shield, Confuse };
 	[HideInInspector]
 	public List<StatusEffect> currentEffects;
-    private int health;
+	public int health;
     private List<Rune> runeBucket;
     private Turn turn;
 
 	void Start () {
-        health = 100;
+        health = 30;
         runeBucket = new List<Rune>();
 		currentEffects = new List<StatusEffect>();
 		turn = new Turn();
