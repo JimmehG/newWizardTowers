@@ -10,6 +10,35 @@ public class RitualAnimation : MonoBehaviour
 	public float shieldXDistance;
 	[Space(5)]
 	public GameObject paralyseObj;
+	public float paralyseYPos;
+	[Space(5)]
+	public GameObject healingObj;
+	public float healingYPos;
+	[Space(5)]
+	public GameObject disenchanteObj;
+	public float disenchantYPos;
+	[Space(5)]
+	public GameObject confuseObj;
+	public float parYPos;
+	[Space(5)]
+	public GameObject mirrorObj;
+	[Space(5)]
+	public GameObject magicBombObj;
+	[Space(5)]
+	public GameObject freezeObj;
+	[Space(5)]
+	public GameObject powerSurgeObj;
+	[Space(5)]
+	public GameObject companionObj;
+	[Space(5)]
+	public GameObject fireCannonObj;
+	[Space(5)]
+	public GameObject drainObj;
+
+
+
+
+
 
 	public static RitualAnimation instance;
 
