@@ -6,6 +6,8 @@ public class Ritual
 {
 
     public static readonly Ritual FIREBALL = new Ritual("Fireball", 8, new Rune[] {Rune.a, Rune.f}, "FireballEffect", "FireballAnimation");
+	public static readonly Ritual LIGHTSHIELD = new Ritual("Light Shield", 8, new Rune[] {Rune.a, Rune.f}, "ShieldEffect", "ShieldAnimation");
+	public static readonly Ritual CONFUSION = new Ritual("Confusion", 8, new Rune[] {Rune.a, Rune.f}, "ConfuseEffect", "ConfuseAnimation");
 
     private readonly string name;
 	private readonly int priority;
@@ -26,7 +28,9 @@ public class Ritual
     {
         get
         {
-            yield return FIREBALL;
+			yield return FIREBALL;
+			yield return LIGHTSHIELD;
+			yield return CONFUSION;
         }
     }
 

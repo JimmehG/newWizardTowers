@@ -8,7 +8,7 @@ public class RitualEffect : MonoBehaviour {
 	void Start()
 	{
 		if (instance == null) {
-			instance = new RitualEffect();
+			instance = this;
 		} else {
 			Destroy(this);
 		}

@@ -45,7 +45,7 @@ public class RitualAnimation : MonoBehaviour
 	void Start ()
 	{
 		if (instance == null) {
-			instance = new RitualAnimation ();
+			instance = this;
 		} else {
 			Destroy (this);
 		}

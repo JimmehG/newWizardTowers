@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -26,7 +27,7 @@ public class GameController : MonoBehaviour
     void Start()
     {
 		if (instance == null) {
-			instance = new GameController();
+			instance = this;
 		} else {
 			Destroy(this);
 		}
@@ -44,7 +45,6 @@ public class GameController : MonoBehaviour
 
     public void EndTurn()
     {
-        
         if (currentPhase == Phase.Player2)
         {
             currentPhase = Phase.Results;
@@ -60,7 +60,9 @@ public class GameController : MonoBehaviour
 
         if (currentPhase == Phase.Results) {
             RunResults();
-        }
+        } else {
+			runeDisplay();
+		}
     }
 
     
@@ -139,22 +141,39 @@ public class GameController : MonoBehaviour
 
     public void addRune(Rune rune)
     {
-        if (currentPhase == Phase.Player1)
-        {
-            player1.getTurn().AddRune(rune);
-        }
-        else
-        {
-            player2.getTurn().AddRune(rune);
-        }
+		if (currentView == currentPhase) {
+	        if (currentPhase == Phase.Player1)
+	        {
+	            player1.getTurn().AddRune(rune);
+	        }
+	        else
+	        {
+	            player2.getTurn().AddRune(rune);
+	        }
 
-        runeDisplay();
+	        runeDisplay();
+		}
     }
+
+	public void removeRune() {
+		if (currentView == currentPhase) {
+			if (currentPhase == Phase.Player1)
+			{
+				player1.getTurn().RemoveRune();
+			}
+			else
+			{
+				player2.getTurn().RemoveRune();
+			}
+			
+			runeDisplay();
+		}
+	}
 
     public void runeDisplay()
     {
         string generatedText = "";
-        List<Rune> runesToDisplay;
+        List<Rune> runesToDisplay = new List<Rune>();
         Player viewPlayer;
 
         if (currentView == Phase.Player1)
@@ -164,13 +183,15 @@ public class GameController : MonoBehaviour
         {
             viewPlayer = player2;
         }
-
         
-        runesToDisplay = viewPlayer.getRunes();
-        runesToDisplay.AddRange(viewPlayer.getTurn().GetRunes());
+        runesToDisplay.AddRange(viewPlayer.getRunes());
+		if (currentView == currentPhase) {
+        	runesToDisplay.AddRange(viewPlayer.getTurn().GetRunes());
+		}
+
         foreach (Rune r in runesToDisplay)
         {
-            generatedText += r.ToString();
+            generatedText += Enum.GetName(typeof(Rune), r);
         }
         
         runeText.text = generatedText;
@@ -211,6 +232,7 @@ public class GameController : MonoBehaviour
             }
             ChangeViewPhaseObjects();
             TriggerCameraView();
+			runeDisplay();
         }
         
     }
