@@ -2,14 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent (typeof (Animator))]
 public class Player : MonoBehaviour {
+
+	private Animator animator;
 
 	[HideInInspector]
 	public bool castingEffect = false;
 	[HideInInspector]
 	public bool castingAnimation = false;
     
-    public enum StatusEffect {Shield, Confuse };//fill
+    public enum StatusEffect {Shield, Confuse };
+	[HideInInspector]
 	public List<StatusEffect> currentEffects;
     private int health;
     private List<Rune> runeBucket;
@@ -20,6 +24,7 @@ public class Player : MonoBehaviour {
         runeBucket = new List<Rune>();
 		currentEffects = new List<StatusEffect>();
 		turn = new Turn();
+		animator = GetComponent<Animator>();
 	}
 
     public void addRunes()
