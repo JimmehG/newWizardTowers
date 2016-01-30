@@ -26,14 +26,16 @@ public class GameController : MonoBehaviour
 		} else {
 			Destroy(this);
 		}
+
+		currentPhase = Phase.Player1;
+		TriggerPhaseObjects();
+		
+		currentView = Phase.Player1;
+		TriggerCameraView();
     }
 
 	public GameController() {
-		currentPhase = Phase.Player1;
-		TriggerPhaseObjects();
 
-        currentView = Phase.Player1;
-        TriggerCameraView();
     }
 
     public void EndTurn()
@@ -64,8 +66,7 @@ public class GameController : MonoBehaviour
 
     void TriggerPhaseObjects()
     {
-        PhaseButton[] phaseObjects = FindObjectsOfType(typeof(PhaseButton)) as PhaseButton[];
-        foreach (PhaseButton p in phaseObjects)
+		foreach (PhaseButton p in FindObjectsOfType(typeof(PhaseButton)) as PhaseButton[])
         {
             p.OnPhase(currentPhase);
         }
@@ -110,9 +111,9 @@ public class GameController : MonoBehaviour
 		TurnCleanup();
     }
 
-	void Cast() {
+	IEnumerator Cast() {
 		currentCaster.castingEffect = true;
-		RitualEffect.Invoke(currentCaster.getTurn().ritualCast);
+		RitualEffect.instance.Invoke(currentCaster.getTurn().ritualCast.GetEffect(), 0.0f);
 		while (currentCaster.castingEffect == true) {
 			yield return null;
 		}

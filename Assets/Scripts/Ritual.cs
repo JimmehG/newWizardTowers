@@ -34,6 +34,14 @@ public class Ritual
 		return priority;
 	}
 
+	public string GetEffect() {
+		return effect;
+	}
+
+	public string GetAnimation() {
+		return animation;
+	}
+
 	public bool Castable(Rune[] bucket)
 	{
 		foreach (Rune r in System.Enum.GetValues(typeof(Rune)))

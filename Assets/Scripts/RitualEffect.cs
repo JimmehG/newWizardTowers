@@ -54,5 +54,7 @@ public class RitualEffect : MonoBehaviour {
 				else {target = GameController.instance.player1;}
 			}
 		}
+
+		return target;
 	}
 }
