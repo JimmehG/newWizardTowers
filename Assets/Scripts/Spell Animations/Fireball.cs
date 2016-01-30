@@ -5,19 +5,27 @@ public class Fireball : MonoBehaviour {
 
 	public float speed;
 
-	public Player playObj;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+	{
+		
 	
 	}
 	
 	// Update is called once per frame
 	void Update () 
 	{
+		Player source = GameController.instance.currentCaster;
 
-		gameObject.transform.position += playObj.transform.position * speed * Time.deltaTime;
-
+		if(source == GameController.instance.player1)
+		{
+			transform.Translate(speed * Time.deltaTime,0,0);
+		}
+		else
+		{
+			transform.Translate(-speed * Time.deltaTime,0,0);
+		}
 
 		//transform.Translate(speed * Time.deltaTime,0,0);
 		
