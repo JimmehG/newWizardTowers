@@ -137,27 +137,40 @@ public class GameController : MonoBehaviour
 		winText.enabled = true;
 	}
 
+    public void addRune(Rune rune)
+    {
+        if (currentPhase == Phase.Player1)
+        {
+            player1.getTurn().AddRune(rune);
+        }
+        else
+        {
+            player2.getTurn().AddRune(rune);
+        }
+
+        runeDisplay();
+    }
+
     public void runeDisplay()
     {
         string generatedText = "";
         List<Rune> runesToDisplay;
-        if (currentPhase == Phase.Player1)
+        Player viewPlayer;
+
+        if (currentView == Phase.Player1)
         {
-            runesToDisplay = player1.getRunes();
-            runesToDisplay.AddRange(player1.getTurn().runesAdded);
-            foreach (Rune r in runesToDisplay)
-            {
-                generatedText += r.ToString();
-            }
+            viewPlayer = player1;
+        } else
+        {
+            viewPlayer = player2;
         }
-        else if (currentPhase == Phase.Player2)
+
+        
+        runesToDisplay = viewPlayer.getRunes();
+        runesToDisplay.AddRange(viewPlayer.getTurn().GetRunes());
+        foreach (Rune r in runesToDisplay)
         {
-            runesToDisplay = player2.getRunes();
-            runesToDisplay.AddRange(player2.getTurn().runesAdded);
-            foreach (Rune r in runesToDisplay)
-            {
-                generatedText += r.ToString();
-            }
+            generatedText += r.ToString();
         }
         
         runeText.text = generatedText;
