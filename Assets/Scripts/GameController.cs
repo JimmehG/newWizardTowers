@@ -16,12 +16,13 @@ public class GameController : MonoBehaviour
 	public static GameController instance;
 
 	public Text winText;
-
     public Text runeText;
 
     private Phase currentView;
 
     public CameraBehaviour cam;
+	public GameObject ritualButton;
+	public GameObject ritualList;
 
 
     void Start()
@@ -37,6 +38,7 @@ public class GameController : MonoBehaviour
         TriggerPhaseObjects();
 		
         ChangeViewPhaseObjects();
+		CreateRitualButtons();
     }
 
 	public GameController() {
@@ -243,5 +245,18 @@ public class GameController : MonoBehaviour
             p.OnViewChange(currentView);
         }
     }
+
+	void CreateRitualButtons() {
+		int position = 0;
+		foreach (Ritual ritual in Ritual.Values) {
+			GameObject button = (GameObject)Instantiate(ritualButton, new Vector3(ritualList.transform.position.x, ritualList.transform.position.y + 150 - (position * 35), 0f), Quaternion.identity);
+			button.transform.parent = ritualList.transform;
+
+			button.GetComponent<RitualButton>().ritual = ritual;
+			button.GetComponentInChildren<Text>().text = ritual.GetName();
+
+			position++;
+		}
+	}
 
 }
