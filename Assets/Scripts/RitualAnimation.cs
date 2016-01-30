@@ -19,7 +19,7 @@ public class RitualAnimation : MonoBehaviour
 	public float disenchantYPos;
 	[Space(5)]
 	public GameObject confuseObj;
-	public float parYPos;
+	public float confuseYPos;
 	[Space(5)]
 	public GameObject mirrorObj;
 	[Space(5)]
@@ -54,7 +54,6 @@ public class RitualAnimation : MonoBehaviour
 	public RitualAnimation ()
 	{
 	}
-
 
 	public void FireballAnimation ()
 	{
@@ -104,11 +103,11 @@ public class RitualAnimation : MonoBehaviour
 
 		if (source == GameController.instance.player1) 
 		{
-			Instantiate (paralyseObj, new Vector3 (source.transform.position.x + shieldXDistance, source.transform.position.y, -5), Quaternion.identity);
+			Instantiate (paralyseObj, new Vector3 (source.transform.position.x, source.transform.position.y + paralyseYPos, -5), Quaternion.identity);
 
 		} else
 		{
-			Instantiate (paralyseObj, new Vector3 (source.transform.position.x - shieldXDistance, source.transform.position.y, -5), Quaternion.identity);
+			Instantiate (paralyseObj, new Vector3 (source.transform.position.x, source.transform.position.y + paralyseYPos, -5), Quaternion.identity);
 
 		}
 
@@ -121,6 +120,16 @@ public class RitualAnimation : MonoBehaviour
 		Player source = GameController.instance.currentCaster;
 		Player target = source.getTurn ().target;
 
+		if (source == GameController.instance.player1) 
+		{
+			Instantiate (healingObj, new Vector3 (source.transform.position.x, source.transform.position.y + healingYPos, -5), Quaternion.identity);
+
+		} else
+		{
+			Instantiate (healingObj, new Vector3 (source.transform.position.x, source.transform.position.y + healingYPos, -5), Quaternion.identity);
+
+		}
+
 		source.castingAnimation = false;
 		
 	}
@@ -130,6 +139,16 @@ public class RitualAnimation : MonoBehaviour
 		Player source = GameController.instance.currentCaster;
 		Player target = source.getTurn ().target;
 
+		if (source == GameController.instance.player1) 
+		{
+			Instantiate (disenchanteObj, new Vector3 (source.transform.position.x, source.transform.position.y + disenchantYPos, -5), Quaternion.identity);
+
+		} else
+		{
+			Instantiate (disenchanteObj, new Vector3 (source.transform.position.x, source.transform.position.y + disenchantYPos, -5), Quaternion.identity);
+
+		}
+
 		source.castingAnimation = false;
 
 	}
@@ -138,6 +157,16 @@ public class RitualAnimation : MonoBehaviour
 	{
 		Player source = GameController.instance.currentCaster;
 		Player target = source.getTurn ().target;
+
+		if (source == GameController.instance.player1) 
+		{
+			Instantiate (healingObj, new Vector3 (source.transform.position.x, source.transform.position.y  + confuseYPos, -5), Quaternion.identity);
+
+		} else
+		{
+			Instantiate (healingObj, new Vector3 (source.transform.position.x, source.transform.position.y + confuseYPos, -5), Quaternion.identity);
+
+		}
 
 		source.castingAnimation = false;
 
