@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class GameController : MonoBehaviour
     public CameraBehaviour cam;
 	public GameObject ritualButton;
 	public GameObject ritualList;
+    public GameObject exitButton;
 
 
     void Start()
@@ -151,11 +153,16 @@ public class GameController : MonoBehaviour
 			}
 		} else {
 			winText.text = "Player 1 wins!";
-            print("P1 WINS!");
 		}
 
 		winText.enabled = true;
+        exitButton.SetActive(true);
 	}
+
+    public void Exit()
+    {
+        SceneManager.LoadScene(0);
+    }
 
     public void addRune(Rune rune)
     {

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class MainMenu : MonoBehaviour {
@@ -17,7 +18,7 @@ public class MainMenu : MonoBehaviour {
 
 	public void PlayButton()
 	{
-		Application.LoadLevel(1);
+		SceneManager.LoadScene(1);
 	}
 
 	public void HowtoPlay() 
