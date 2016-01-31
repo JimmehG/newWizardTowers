@@ -27,7 +27,6 @@ public class CameraBehaviour : MonoBehaviour
             Vector3 currentPos = Vector3.Lerp(startingPos, destination, fracJourney);
             transform.position = new Vector3(currentPos.x, currentPos.y, -10);
             GetComponent<Camera>().orthographicSize = currentPos.z;
-
         }
     }
 

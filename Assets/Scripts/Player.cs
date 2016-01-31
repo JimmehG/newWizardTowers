@@ -7,6 +7,11 @@ public class Player : MonoBehaviour {
 
 	private Animator animator;
 
+    public Sprite hit;
+    public Sprite cast;
+
+    private SpriteRenderer sprRend;
+
 	[HideInInspector]
 	public bool castingEffect = false;
 	[HideInInspector]
@@ -19,11 +24,16 @@ public class Player : MonoBehaviour {
     private List<Rune> runeBucket;
     private Turn turn;
 
-	void Start () {
+    void Reanimate() {
+        GetComponent<Animator>().enabled = true;
+    }
+
+    void Start () {
         runeBucket = new List<Rune>();
 		currentEffects = new List<StatusEffect>();
 		turn = new Turn();
 		animator = GetComponent<Animator>();
+        sprRend = GetComponent<SpriteRenderer>();
 	}
 
     public void addRunes()
@@ -43,11 +53,20 @@ public class Player : MonoBehaviour {
 		foreach (Rune r in used) {
 			runeBucket.Remove(r);
 		}
+        sprRend.sprite = cast;
+        GetComponent<Animator>().enabled = false;
+        Invoke("Reanimate", 1.5f);
 	}
 
 	public void addHealth(int damage) {
 		health += damage;
-	}
+    }
+    public void PlayHit()
+    {
+        sprRend.sprite = hit;
+        GetComponent<Animator>().enabled = false;
+        Invoke("Reanimate", 1.5f);
+    }
 
 	public bool isDead() {
 		return health <= 0;

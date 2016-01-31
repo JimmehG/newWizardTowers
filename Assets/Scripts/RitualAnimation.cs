@@ -61,7 +61,6 @@ public class RitualAnimation : MonoBehaviour
 	{
 		Player source = GameController.instance.currentCaster;
 		Player target = source.getTurn ().target;
-
 		if (source == GameController.instance.player1) 
 		{
 			Instantiate (fireBallObj, new Vector3 (source.transform.position.x + 2.5f, source.transform.position.y, -5), Quaternion.identity);
@@ -72,11 +71,11 @@ public class RitualAnimation : MonoBehaviour
 
 		}
 
-		spellTime = 5;
+	//	spellTime = 5;
 
-		StartCoroutine(Wait());
+//		StartCoroutine(Wait());
 
-		source.castingAnimation = false;
+		//source.castingAnimation = false;
 	}
 		
 

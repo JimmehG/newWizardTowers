@@ -107,7 +107,8 @@ public class GameController : MonoBehaviour
             StartCoroutine(CastAnimation(player2));
         }
 
-		TurnCleanup();
+
+		StartCoroutine(TurnCleanup());
     }
 
     private void CastEffect(Player player)
@@ -133,13 +134,14 @@ public class GameController : MonoBehaviour
         yield return null;
 	}
 
-	void TurnCleanup() {
-		player1.TurnCleanup();
+	IEnumerator TurnCleanup() {
+        yield return new WaitWhile(() => player1.castingAnimation || player2.castingAnimation);
+        player1.TurnCleanup();
 		player2.TurnCleanup();
 
 		if (player1.isDead() || player2.isDead()) {
 			GameOver();
-		} else {
+		} else  {
 			EndTurn();
 		}
 	}
