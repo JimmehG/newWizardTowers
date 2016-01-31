@@ -16,8 +16,9 @@ public class RitualEffect : MonoBehaviour {
 	
 	public RitualEffect() {
 	}
+    
 
-	public static void FireballEffect() {
+    public void FireballEffect() {
 		Player source = GameController.instance.currentCaster;
         ChooseTarget(source);
 		Player target = source.getTurn().target;
@@ -30,7 +31,7 @@ public class RitualEffect : MonoBehaviour {
 		source.castingEffect = false;
 	}
 
-	public static void ShieldEffect() {
+	public void ShieldEffect() {
 		Player source = GameController.instance.currentCaster;
 		ChooseTarget(source);
 		Player target = source.getTurn().target;
@@ -40,7 +41,7 @@ public class RitualEffect : MonoBehaviour {
 		source.castingEffect = false;
 	}
 
-	public static void ConfuseEffect() {
+	public void ConfuseEffect() {
 		Player source = GameController.instance.currentCaster;
 		ChooseTarget(source);
 		Player target = source.getTurn().target;
@@ -54,7 +55,7 @@ public class RitualEffect : MonoBehaviour {
 		Player target = source.getTurn().target;
 
 		if (!source.currentEffects.Contains(Player.StatusEffect.Confuse)) {
-			if (Random.value > 0.5f) {
+			if (UnityEngine.Random.value > 0.5f) {
 				if(target == GameController.instance.player1) {target = GameController.instance.player2;}
 				else {target = GameController.instance.player1;}
 
@@ -62,4 +63,5 @@ public class RitualEffect : MonoBehaviour {
 			}
 		}
 	}
+
 }

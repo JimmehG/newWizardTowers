@@ -10,8 +10,8 @@ public class GameController : MonoBehaviour
     public enum Phase {Results, Player1, Player2};
 
 	public Player player1, player2;
-	[HideInInspector]
-	public Player currentCaster;
+    [HideInInspector]
+    public Player currentCaster;
 
 	public static GameController instance;
 
@@ -76,44 +76,59 @@ public class GameController : MonoBehaviour
 
 		Ritual p1Ritual = player1.getTurn().ritualCast;
 		Ritual p2Ritual = player2.getTurn().ritualCast;
+
+
         if (p1Ritual != null && p2Ritual != null) {
 			//P1 goes first on same-spell. Shouldn't make a difference. Can case-by-case it later.
 			if (p1Ritual.GetPriority() < p2Ritual.GetPriority()) {
-				currentCaster = player2;
-				Cast();
-				currentCaster = player1;
-				Cast();
+                //p2effect
+                CastEffect(player2);
+                //P1effect
+                CastEffect(player1);
+                //Start animation coroutine
+                StartCoroutine(CastAnimation(player2, player1));
 			} else {
-				currentCaster = player1;
-				Cast();
-				currentCaster = player2;
-				Cast();
-			}
+                //P1effect
+                CastEffect(player1);
+                //p2effect
+                CastEffect(player2);
+                //Start animation coroutine
+                StartCoroutine(CastAnimation(player1, player2));
+            }
 		} else if (p1Ritual != null) {
-			currentCaster = player1;
-			Cast();
-		} else if (p2Ritual != null) {
-			currentCaster = player2;
-			Cast();
-		}
+            //P1effect
+            CastEffect(player1);
+            StartCoroutine(CastAnimation(player1));
+        } else if (p2Ritual != null) {
+            //p2effect
+            CastEffect(player2);
+            StartCoroutine(CastAnimation(player2));
+        }
 
 		TurnCleanup();
     }
 
-	IEnumerator Cast() {
-		currentCaster.useRunes(currentCaster.getTurn().ritualCast.GetRunes());
+    private void CastEffect(Player player)
+    {
+        currentCaster = player;
+        player.useRunes(player.getTurn().ritualCast.GetRunes());
+        RitualEffect.instance.Invoke(player.getTurn().ritualCast.GetEffect(), 0.0f);
+        while (player.castingEffect) { }
+    }
 
-		currentCaster.castingEffect = true;
-		RitualEffect.instance.Invoke(currentCaster.getTurn().ritualCast.GetEffect(), 0.0f);
-		while (currentCaster.castingEffect == true) {
-			yield return null;
-		}
+    IEnumerator CastAnimation(Player player)
+    {
+        currentCaster = player;
+        player.castingAnimation = true;
+        RitualAnimation.instance.Invoke(player.getTurn().ritualCast.GetAnimation(), 0.0f);
+        yield return new WaitWhile(() => player.castingAnimation);
+    }
 
-		currentCaster.castingAnimation = true;
-		RitualAnimation.instance.Invoke(currentCaster.getTurn().ritualCast.GetAnimation(), 0.0f);
-		while (currentCaster.castingAnimation == true) {
-			yield return null;
-		}
+    IEnumerator CastAnimation(Player firstPlayer, Player secondPlayer) {
+
+        CastAnimation(firstPlayer);
+        CastAnimation(secondPlayer);
+        yield return null;
 	}
 
 	void TurnCleanup() {

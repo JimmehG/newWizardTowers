@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class RitualAnimation : MonoBehaviour
 {
@@ -115,7 +116,9 @@ public class RitualAnimation : MonoBehaviour
 		source.castingAnimation = false;
 	}
 
-	public void HealingWaterAnimation()
+    
+
+    public void HealingWaterAnimation()
 	{
 		Player source = GameController.instance.currentCaster;
 		Player target = source.getTurn ().target;

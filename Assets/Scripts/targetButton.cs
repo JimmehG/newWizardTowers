@@ -12,7 +12,7 @@ public class targetButton : MonoBehaviour
         if (target == PlayerTarget.Player1) {
             targetPlayer = GameController.instance.player1;
         }
-        else
+        else if (target == PlayerTarget.Player2)
         {
             targetPlayer = GameController.instance.player2;
         }
