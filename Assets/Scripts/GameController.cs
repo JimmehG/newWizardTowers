@@ -26,6 +26,8 @@ public class GameController : MonoBehaviour
 	public GameObject ritualList;
     public GameObject exitButton;
 
+	private List<GameObject> ritualButtons;
+
 
     void Start()
     {
@@ -221,6 +223,7 @@ public class GameController : MonoBehaviour
         
         runeText.text = generatedText;
             
+		InteractableRitualButtons(runesToDisplay);
     }
 
     void TriggerPhaseObjects()
@@ -270,15 +273,31 @@ public class GameController : MonoBehaviour
     }
 
 	void CreateRitualButtons() {
+		ritualButtons = new List<GameObject>();
+
 		int position = 0;
 		foreach (Ritual ritual in Ritual.Values) {
 			GameObject button = (GameObject)Instantiate(ritualButton, new Vector3(ritualList.transform.position.x, ritualList.transform.position.y + 150 - (position * 35), 0f), Quaternion.identity);
 			button.transform.SetParent(ritualList.transform);
 
+			button.GetComponent<Button>().interactable = false;
+
 			button.GetComponent<RitualButton>().ritual = ritual;
 			button.GetComponentInChildren<Text>().text = ritual.GetName();
 
+			ritualButtons.Add(button);
+
 			position++;
+		}
+	}
+
+	void InteractableRitualButtons(List<Rune> runes) {
+		foreach (GameObject button in ritualButtons) {
+			if (currentPhase == currentView && button.GetComponent<RitualButton>().ritual.Castable(runes.ToArray)) {
+				button.GetComponent<Button>().interactable = true;
+			} else {
+				button.GetComponent<Button>().interactable = false;
+			}
 		}
 	}
 
