@@ -5,11 +5,19 @@ public class Fireball : MonoBehaviour {
 
 	public float speed;
 
+	public AudioClip movementSoundFX;
+	public AudioClip explosionSFX;
+
+	AudioSource aSource;
+
 
 	// Use this for initialization
 	void Start () 
 	{
-		
+		aSource = GetComponent<AudioSource>();
+
+		aSource.clip = movementSoundFX;
+		aSource.Play();
 	
 	}
 	
@@ -21,6 +29,8 @@ public class Fireball : MonoBehaviour {
 		if(source == GameController.instance.player1)
 		{
 			transform.Translate(speed * Time.deltaTime,0,0);
+		
+
 		}
 		else
 		{
@@ -32,8 +42,10 @@ public class Fireball : MonoBehaviour {
 	
 	}
 
-    void OnCollisionEnter(Collision2D col)
+    void OnCollisionEnter2D(Collision2D col)
     {
+		aSource.clip = explosionSFX;
+		aSource.Play();
         Destroy(gameObject);
     } 
 }
