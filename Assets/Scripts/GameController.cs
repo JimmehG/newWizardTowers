@@ -266,7 +266,7 @@ public class GameController : MonoBehaviour
 		int position = 0;
 		foreach (Ritual ritual in Ritual.Values) {
 			GameObject button = (GameObject)Instantiate(ritualButton, new Vector3(ritualList.transform.position.x, ritualList.transform.position.y + 150 - (position * 35), 0f), Quaternion.identity);
-			button.transform.parent = ritualList.transform;
+			button.transform.SetParent(ritualList.transform);
 
 			button.GetComponent<RitualButton>().ritual = ritual;
 			button.GetComponentInChildren<Text>().text = ritual.GetName();
