@@ -1,21 +1,22 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
 public class Ritual
 {
 
-    public static readonly Ritual FIREBALL = new Ritual("Fireball", 8, new Rune[] {Rune.a, Rune.f}, "FireballEffect", "FireballAnimation");
-	public static readonly Ritual LIGHTSHIELD = new Ritual("Light Shield", 6, new Rune[] {Rune.a, Rune.f}, "ShieldEffect", "ShieldAnimation");
-	public static readonly Ritual CONFUSION = new Ritual("Confusion", 1, new Rune[] {Rune.a, Rune.f}, "ConfuseEffect", "ConfuseAnimation");
+    public static readonly Ritual FIREBALL = new Ritual("Fireball", 8, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.FireballEffect(); }, "FireballAnimation");
+	public static readonly Ritual LIGHTSHIELD = new Ritual("Light Shield", 6, new Rune[] {Rune.a, Rune.f}, () => { RitualEffect.instance.ShieldEffect(); }, "ShieldAnimation");
+	public static readonly Ritual CONFUSION = new Ritual("Confusion", 1, new Rune[] {Rune.a, Rune.f}, () => { RitualEffect.instance.ConfuseEffect(); }, "ConfuseAnimation");
 
     private readonly string name;
 	private readonly int priority;
     private readonly Rune[] runes;
-    private readonly string effect;
+    private readonly Action effect;
 	private readonly string animation;
 
-    Ritual(string name, int priority, Rune[] runes, string effect, string animation)
+    Ritual(string name, int priority, Rune[] runes, Action effect, string animation)
     {
         this.name = name;
 		this.priority = priority;
@@ -46,8 +47,8 @@ public class Ritual
 		return runes;
 	}
 
-	public string GetEffect() {
-		return effect;
+	public void CastEffect() {
+		effect.Invoke();
 	}
 
 	public string GetAnimation() {

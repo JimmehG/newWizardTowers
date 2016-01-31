@@ -20,7 +20,6 @@ public class Player : MonoBehaviour {
     private Turn turn;
 
 	void Start () {
-        health = 30;
         runeBucket = new List<Rune>();
 		currentEffects = new List<StatusEffect>();
 		turn = new Turn();
