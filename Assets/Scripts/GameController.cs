@@ -295,7 +295,7 @@ public class GameController : MonoBehaviour
 
 	void InteractableRitualButtons(List<Rune> runes) {
 		foreach (GameObject button in ritualButtons) {
-			if (currentPhase == currentView && button.GetComponent<RitualButton>().ritual.Castable(runes.ToArray)) {
+			if (currentPhase == currentView && button.GetComponent<RitualButton>().ritual.Castable(runes.ToArray())) {
 				button.GetComponent<Button>().interactable = true;
 			} else {
 				button.GetComponent<Button>().interactable = false;
