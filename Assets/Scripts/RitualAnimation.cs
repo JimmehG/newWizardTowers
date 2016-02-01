@@ -40,8 +40,6 @@ public class RitualAnimation : MonoBehaviour
 	int spellTime;
 
 
-
-
 	public static RitualAnimation instance;
 
 	void Start ()
@@ -61,6 +59,7 @@ public class RitualAnimation : MonoBehaviour
 	{
 		Player source = GameController.instance.currentCaster;
 		Player target = source.getTurn ().target;
+
 		if (source == GameController.instance.player1) 
 		{
 			Instantiate (fireBallObj, new Vector3 (source.transform.position.x + 2.5f, source.transform.position.y, -5), Quaternion.identity);
@@ -168,11 +167,11 @@ public class RitualAnimation : MonoBehaviour
 
 		if (source == GameController.instance.player1) 
 		{
-			Instantiate (healingObj, new Vector3 (source.transform.position.x, source.transform.position.y  + confuseYPos, -5), Quaternion.identity);
+			Instantiate (confuseObj, new Vector3 (source.transform.position.x, source.transform.position.y  + confuseYPos, -5), Quaternion.identity);
 
 		} else
 		{
-			Instantiate (healingObj, new Vector3 (source.transform.position.x, source.transform.position.y + confuseYPos, -5), Quaternion.identity);
+			Instantiate (confuseObj, new Vector3 (source.transform.position.x, source.transform.position.y + confuseYPos, -5), Quaternion.identity);
 
 		}
 

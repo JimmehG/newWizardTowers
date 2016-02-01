@@ -14,7 +14,7 @@ public class explosionDie : MonoBehaviour {
     void Update()
     {
         float nowTime = Time.time - startTime;
-        Debug.Log(nowTime);
+        //Debug.Log(nowTime);
         if (nowTime >= death)
         {
             Destroy(gameObject);

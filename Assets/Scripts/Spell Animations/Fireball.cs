@@ -59,7 +59,7 @@ public class Fireball : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        print("Hit");
+       // print("Hit");
         col.gameObject.GetComponent<Player>().PlayHit();
         GameController.instance.currentCaster.castingAnimation = false;
         Instantiate(explosion);
