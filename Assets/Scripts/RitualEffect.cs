@@ -44,6 +44,29 @@ public class RitualEffect : MonoBehaviour {
 		source.castingEffect = false;
 	}
 
+    public void ParalyseEffect()
+    {
+        Player source = GameController.instance.currentCaster;
+        ChooseTarget(source);
+        Player target = source.getTurn().target;
+
+        target.addStatus(Player.StatusEffect.Paralyse);
+
+        source.castingEffect = false;
+    }
+
+    public void HealingWaterEffect()
+    {
+        Player source = GameController.instance.currentCaster;
+        ChooseTarget(source);
+        Player target = source.getTurn().target;
+
+        target.addStatus(Player.StatusEffect.HealingWater);
+
+        source.castingEffect = false;
+    }
+
+
 	public void ConfuseEffect() {
 		Player source = GameController.instance.currentCaster;
 		ChooseTarget(source);
