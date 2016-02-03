@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
 	[HideInInspector]
 	public bool castingAnimation = false;
     
-    public enum StatusEffect {Shield, Confuse };
+    public enum StatusEffect {Shield, Paralyse,HealingWater,Confuse };
 	[HideInInspector]
 	public List<StatusEffect> currentEffects;
 	public int health;
@@ -83,6 +83,8 @@ public class Player : MonoBehaviour {
 	public void TurnCleanup() {
 		turn = new Turn();
 		currentEffects.Remove(StatusEffect.Confuse);
+        currentEffects.Remove(StatusEffect.Paralyse);
 		currentEffects.Remove(StatusEffect.Shield);
+
 	}
 }
