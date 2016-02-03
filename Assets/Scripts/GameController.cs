@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour
     public GameObject exitButton;
 
 	private List<GameObject> ritualButtons;
-
+    private bool turnEnded;
 
     void Start()
     {
@@ -44,11 +44,7 @@ public class GameController : MonoBehaviour
         ChangeViewPhaseObjects();
 		CreateRitualButtons();
     }
-
-	public GameController() {
-
-    }
-
+    
     public void EndTurn()
     {
         if (currentPhase == Phase.Player2)
@@ -61,14 +57,11 @@ public class GameController : MonoBehaviour
         }
 
         currentView = currentPhase;
-        
+
+
         TriggerPhaseObjects();
 
-        if (currentPhase == Phase.Results) {
-            RunResults();
-        } else {
-			runeDisplay();
-		}
+        
     }
 
     
@@ -230,16 +223,40 @@ public class GameController : MonoBehaviour
 
     void TriggerPhaseObjects()
     {
+        StartCoroutine(CameraWait(currentPhase));
+
+    }
+
+    private IEnumerator CameraWait(Phase phaseView)
+    {
         CanvasGroup cG = GameObject.FindGameObjectWithTag("mainUI").GetComponent<CanvasGroup>();
-        if (currentPhase == GameController.Phase.Results)
+
+        //disable all ui while camera is moving
+        cG.interactable = false;
+        cG.alpha = 0;
+
+        TriggerCameraView();
+
+        yield return new WaitWhile(() => cam.moving);
+
+        if (phaseView == Phase.Results)
             cG.alpha = 0;
         else
             cG.alpha = 1;
 
-        cG.interactable = (currentPhase != GameController.Phase.Results);
+        cG.interactable = (phaseView != Phase.Results);
 
-        TriggerCameraView();
         ChangeViewPhaseObjects();
+
+        if (phaseView == Phase.Results)
+        {
+            RunResults();
+        }
+        else
+        {
+            runeDisplay();
+        }
+
 
     }
 
@@ -260,9 +277,9 @@ public class GameController : MonoBehaviour
             {
                 currentView = Phase.Player1;
             }
-            ChangeViewPhaseObjects();
-            TriggerCameraView();
-			runeDisplay();
+            
+
+            StartCoroutine(CameraWait(currentView));
         }
         
     }
