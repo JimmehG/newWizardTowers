@@ -70,11 +70,7 @@ public class RitualAnimation : MonoBehaviour
 
 		}
 
-	//	spellTime = 5;
-
-//		StartCoroutine(Wait());
-
-		//source.castingAnimation = false;
+  
 	}
 		
 
@@ -203,7 +199,18 @@ public class RitualAnimation : MonoBehaviour
 		Player source = GameController.instance.currentCaster;
 		Player target = source.getTurn ().target;
 
-		source.castingAnimation = false;
+        if (source == GameController.instance.player1)
+        {
+            Instantiate(magicBombObj, new Vector3(source.transform.position.x + shieldXDistance, source.transform.position.y, -5), Quaternion.identity);
+
+        }
+        else
+        {
+            Instantiate(magicBombObj, new Vector3(source.transform.position.x + shieldXDistance, source.transform.position.y, -5), Quaternion.identity);
+
+        }
+
+        source.castingAnimation = false;
 
 	}
 

@@ -85,6 +85,7 @@ public class Player : MonoBehaviour {
 		currentEffects.Remove(StatusEffect.Confuse);
         currentEffects.Remove(StatusEffect.Paralyse);
 		currentEffects.Remove(StatusEffect.Shield);
+        currentEffects.Remove(StatusEffect.HealingWater);
 
 	}
 }

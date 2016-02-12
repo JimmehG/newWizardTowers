@@ -69,11 +69,8 @@ public class RitualEffect : MonoBehaviour
         Player source = GameController.instance.currentCaster;
         try
         {
-            ChooseTarget(source);
-            Player target = source.getTurn().target;
-
-
-            target.addHealth(10);
+            source.addHealth(10);
+           
 
         }
         finally
@@ -85,6 +82,7 @@ public class RitualEffect : MonoBehaviour
 
     public void DisenchantEffect()
     {
+
 
 
         Player source = GameController.instance.currentCaster;
@@ -126,20 +124,32 @@ public class RitualEffect : MonoBehaviour
         ChooseTarget(source);
         Player target = source.getTurn().target;
 
-        target.addStatus(Player.StatusEffect.Shield);
+        
 
-        source.castingEffect = false;
+
+
+
     }
 
     public void FreezeEffect()
     {
+        
+
         Player source = GameController.instance.currentCaster;
+
         ChooseTarget(source);
         Player target = source.getTurn().target;
 
-        target.addStatus(Player.StatusEffect.Shield);
+        
+        
+        //target.enabled = false;
+
+        
+
 
         source.castingEffect = false;
+
+
     }
 
     public void PowerSurgeEffect()
@@ -169,10 +179,21 @@ public class RitualEffect : MonoBehaviour
     public void FireCannonEffect()
     {
         Player source = GameController.instance.currentCaster;
-        ChooseTarget(source);
-        Player target = source.getTurn().target;
 
-        target.addStatus(Player.StatusEffect.Shield);
+        try
+        {
+            ChooseTarget(source);
+            Player target = source.getTurn().target;
+
+            if (!target.currentEffects.Contains(Player.StatusEffect.Shield))
+            {
+                target.addHealth(-20);
+            }
+        }
+        finally
+        {
+            source.castingEffect = false;
+        }
 
         source.castingEffect = false;
     }
@@ -181,14 +202,26 @@ public class RitualEffect : MonoBehaviour
     public void DrainEffect()
     {
         Player source = GameController.instance.currentCaster;
-        ChooseTarget(source);
-        Player target = source.getTurn().target;
+        try
+        {
+            ChooseTarget(source);
+            Player target = source.getTurn().target;
 
-        target.addStatus(Player.StatusEffect.Shield);
+            if (!target.currentEffects.Contains(Player.StatusEffect.Shield))
+            {
+                target.addHealth(-10);
+            }
+        }
+        finally
+        {
+            source.addHealth(10);
+            source.castingEffect = false;
+        }
 
+       
         source.castingEffect = false;
     }
-
+                 
 
 
 
