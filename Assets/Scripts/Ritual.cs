@@ -10,7 +10,9 @@ public class Ritual
     public static readonly Ritual LIGHTSHIELD = new Ritual("Light Shield", 6, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.ShieldEffect(); }, "ShieldAnimation");
     public static readonly Ritual PARALYSE = new Ritual("Paralyse", 4, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.ParalyseEffect(); }, "ParalyseAnimation");
     public static readonly Ritual HEALINGWATER = new Ritual("Healing Water", 10, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.HealingWaterEffect(); }, "HealingWaterAnimation");
+    public static readonly Ritual DISENCHANT = new Ritual("Disenchant", 13, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.DisenchantEffect(); }, "DisenchantAnimation");
     public static readonly Ritual CONFUSION = new Ritual("Confusion", 12, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.ConfuseEffect(); }, "ConfuseAnimation");
+    public static readonly Ritual MIRROR = new Ritual("Mirror", 3, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.MirrorEffect(); }, "MirrorAnimation");
 
 
     private readonly string name;
@@ -35,7 +37,10 @@ public class Ritual
             yield return FIREBALL;
             yield return LIGHTSHIELD;
             yield return PARALYSE;
+            yield return HEALINGWATER;
+            yield return DISENCHANT;
             yield return CONFUSION;
+            yield return MIRROR;
         }
     }
 

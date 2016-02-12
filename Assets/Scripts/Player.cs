@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
 	[HideInInspector]
 	public bool castingAnimation = false;
     
-    public enum StatusEffect {Shield, Paralyse,HealingWater,Confuse };
+    public enum StatusEffect {Shield, Paralyse, HealingWater,Confuse };
 	[HideInInspector]
 	public List<StatusEffect> currentEffects;
 	public int health;
