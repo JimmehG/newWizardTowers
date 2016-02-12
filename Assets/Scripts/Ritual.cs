@@ -14,6 +14,15 @@ public class Ritual
     public static readonly Ritual CONFUSION = new Ritual("Confusion", 12, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.ConfuseEffect(); }, "ConfuseAnimation");
     public static readonly Ritual MIRROR = new Ritual("Mirror", 3, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.MirrorEffect(); }, "MirrorAnimation");
 
+    public static readonly Ritual MAGICBOMB = new Ritual("Magic Bomb", 11, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.MagicBombEffect(); }, "MagicBombAnimation");
+    public static readonly Ritual FREEZE = new Ritual("Freeze", 1, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.FreezeEffect(); }, "FreezeAnimation");
+    public static readonly Ritual POWERSURGE = new Ritual("Power Surge", 5, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.PowerSurgeEffect(); }, "PowerSurgeAnimation");
+    public static readonly Ritual COMPANION = new Ritual("Companion", 2, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.CompanionEffect(); ; }, "CompanionAnimation");
+    public static readonly Ritual FIRECANNON = new Ritual("Fire Cannon", 7, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.FireCannonEffect(); }, "FireCannonAnimation");
+    public static readonly Ritual DRAIN = new Ritual("Drain", 9, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.DrainEffect(); }, "DrainAnimation");
+
+
+
 
     private readonly string name;
     private readonly int priority;
@@ -41,6 +50,15 @@ public class Ritual
             yield return DISENCHANT;
             yield return CONFUSION;
             yield return MIRROR;
+
+            yield return MAGICBOMB;
+            yield return FREEZE;
+            yield return POWERSURGE;
+            yield return COMPANION;
+            yield return FIRECANNON;
+            yield return DRAIN;
+
+
         }
     }
 

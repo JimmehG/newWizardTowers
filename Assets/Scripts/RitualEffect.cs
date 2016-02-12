@@ -80,7 +80,7 @@ public class RitualEffect : MonoBehaviour
         {
             source.castingEffect = false;
         }
-        source.castingEffect = false;
+    
     }
 
     public void DisenchantEffect()
@@ -119,6 +119,79 @@ public class RitualEffect : MonoBehaviour
 
         source.castingEffect = false;
     }
+
+    public void MagicBombEffect()
+    {
+        Player source = GameController.instance.currentCaster;
+        ChooseTarget(source);
+        Player target = source.getTurn().target;
+
+        target.addStatus(Player.StatusEffect.Shield);
+
+        source.castingEffect = false;
+    }
+
+    public void FreezeEffect()
+    {
+        Player source = GameController.instance.currentCaster;
+        ChooseTarget(source);
+        Player target = source.getTurn().target;
+
+        target.addStatus(Player.StatusEffect.Shield);
+
+        source.castingEffect = false;
+    }
+
+    public void PowerSurgeEffect()
+    {
+        Player source = GameController.instance.currentCaster;
+        ChooseTarget(source);
+        Player target = source.getTurn().target;
+
+        target.addStatus(Player.StatusEffect.Shield);
+
+        source.castingEffect = false;
+    }
+
+
+    public void CompanionEffect()
+    {
+        Player source = GameController.instance.currentCaster;
+        ChooseTarget(source);
+        Player target = source.getTurn().target;
+
+        target.addStatus(Player.StatusEffect.Shield);
+
+        source.castingEffect = false;
+    }
+
+
+    public void FireCannonEffect()
+    {
+        Player source = GameController.instance.currentCaster;
+        ChooseTarget(source);
+        Player target = source.getTurn().target;
+
+        target.addStatus(Player.StatusEffect.Shield);
+
+        source.castingEffect = false;
+    }
+
+
+    public void DrainEffect()
+    {
+        Player source = GameController.instance.currentCaster;
+        ChooseTarget(source);
+        Player target = source.getTurn().target;
+
+        target.addStatus(Player.StatusEffect.Shield);
+
+        source.castingEffect = false;
+    }
+
+
+
+
 
     static void ChooseTarget(Player source)
     {
