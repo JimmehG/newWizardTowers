@@ -6,20 +6,20 @@ using System.Collections.Generic;
 public class Ritual
 {
 
-    public static readonly Ritual FIREBALL = new Ritual("Fireball", 8, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.FireballEffect(); }, "FireballAnimation");
-    public static readonly Ritual LIGHTSHIELD = new Ritual("Light Shield", 6, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.ShieldEffect(); }, "ShieldAnimation");
-    public static readonly Ritual PARALYSE = new Ritual("Paralyse", 4, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.ParalyseEffect(); }, "ParalyseAnimation");
-    public static readonly Ritual HEALINGWATER = new Ritual("Healing Water", 10, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.HealingWaterEffect(); }, "HealingWaterAnimation");
-    public static readonly Ritual DISENCHANT = new Ritual("Disenchant", 13, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.DisenchantEffect(); }, "DisenchantAnimation");
-    public static readonly Ritual CONFUSION = new Ritual("Confusion", 12, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.ConfuseEffect(); }, "ConfuseAnimation");
-    public static readonly Ritual MIRROR = new Ritual("Mirror", 3, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.MirrorEffect(); }, "MirrorAnimation");
+    public static readonly Ritual FIREBALL = new Ritual("Fireball: AA A", 8, new Rune[] { Rune.a, Rune.a, Rune.a}, () => { RitualEffect.instance.FireballEffect(); }, "FireballAnimation");
+    public static readonly Ritual LIGHTSHIELD = new Ritual("Light Shield: AA B", 6, new Rune[] { Rune.a, Rune.a,Rune.b}, () => { RitualEffect.instance.ShieldEffect(); }, "ShieldAnimation");
+    public static readonly Ritual PARALYSE = new Ritual("Paralyse: AA C", 4, new Rune[] { Rune.a, Rune.a,Rune.c }, () => { RitualEffect.instance.ParalyseEffect(); }, "ParalyseAnimation");
+    public static readonly Ritual HEALINGWATER = new Ritual("Healing Water: AA D", 10, new Rune[] { Rune.a, Rune.a,Rune.d }, () => { RitualEffect.instance.HealingWaterEffect(); }, "HealingWaterAnimation");
+    public static readonly Ritual DISENCHANT = new Ritual("Disenchant: AA EE", 13, new Rune[] { Rune.a, Rune.a,Rune.e,Rune.e}, () => { RitualEffect.instance.DisenchantEffect(); }, "DisenchantAnimation");
+    public static readonly Ritual CONFUSION = new Ritual("Confusion: AA EE A", 12, new Rune[] { Rune.a, Rune.a,Rune.e,Rune.e,Rune.a }, () => { RitualEffect.instance.ConfuseEffect(); }, "ConfuseAnimation");
+    public static readonly Ritual MIRROR = new Ritual("Mirror: AA EE B", 3, new Rune[] { Rune.a, Rune.a,Rune.e,Rune.e,Rune.b }, () => { RitualEffect.instance.MirrorEffect(); }, "MirrorAnimation");
 
-    public static readonly Ritual MAGICBOMB = new Ritual("Magic Bomb", 11, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.MagicBombEffect(); }, "MagicBombAnimation");
-    public static readonly Ritual FREEZE = new Ritual("Freeze", 1, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.FreezeEffect(); }, "FreezeAnimation");
-    public static readonly Ritual POWERSURGE = new Ritual("Power Surge", 5, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.PowerSurgeEffect(); }, "PowerSurgeAnimation");
-    public static readonly Ritual COMPANION = new Ritual("Companion", 2, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.CompanionEffect(); ; }, "CompanionAnimation");
-    public static readonly Ritual FIRECANNON = new Ritual("Fire Cannon", 7, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.FireCannonEffect(); }, "FireCannonAnimation");
-    public static readonly Ritual DRAIN = new Ritual("Drain", 9, new Rune[] { Rune.a, Rune.f }, () => { RitualEffect.instance.DrainEffect(); }, "DrainAnimation");
+    public static readonly Ritual MAGICBOMB = new Ritual("Magic Bomb: AA EE C", 11, new Rune[] { Rune.a, Rune.a,Rune.e,Rune.e,Rune.c }, () => { RitualEffect.instance.MagicBombEffect(); }, "MagicBombAnimation");
+    public static readonly Ritual FREEZE = new Ritual("Freeze: AA FF EA", 1, new Rune[] { Rune.a, Rune.a,Rune.f,Rune.f,Rune.e,Rune.a }, () => { RitualEffect.instance.FreezeEffect(); }, "FreezeAnimation");
+    public static readonly Ritual POWERSURGE = new Ritual("Power Surge: AA FF EB", 5, new Rune[] { Rune.a, Rune.a,Rune.f,Rune.f,Rune.e,Rune.b }, () => { RitualEffect.instance.PowerSurgeEffect(); }, "PowerSurgeAnimation");
+    public static readonly Ritual COMPANION = new Ritual("Companion: AA FF EC", 2, new Rune[] { Rune.a, Rune.a,Rune.f,Rune.f,Rune.e,Rune.c }, () => { RitualEffect.instance.CompanionEffect(); ; }, "CompanionAnimation");
+    public static readonly Ritual FIRECANNON = new Ritual("Fire Cannon: AA FF ED", 7, new Rune[] { Rune.a, Rune.a,Rune.f,Rune.f,Rune.e,Rune.d }, () => { RitualEffect.instance.FireCannonEffect(); }, "FireCannonAnimation");
+    public static readonly Ritual DRAIN = new Ritual("Drain: AA FF EE", 9, new Rune[] { Rune.a, Rune.a,Rune.f,Rune.f,Rune.e,Rune.e }, () => { RitualEffect.instance.DrainEffect(); }, "DrainAnimation");
 
 
 
